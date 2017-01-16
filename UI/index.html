@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>WorkMan UI</title>
+</head>
+<body>
+
+	<h1>WorkMan UI</h1>
+
+	<details open="">
+		<summary>Button</summary>
+		<section id="btn-box"></section>
+	</details>
+
+	<script src="contents/js/react.js"></script>
+	<script src="contents/js/react-dom.js"></script>
+	<script src="contents/js/babel/browser.min.js"></script>
+
+	<script type="text/babel">
+		let MyBtn = React.createClass({
+			render: function() {
+				return (
+					<button className={this.props.class}>
+					{
+			   			React.Children.map(this.props.children, function(child){
+							return <span>{child}</span>
+				    	})
+				    }
+					</button>
+				)
+			}
+		});
+
+		ReactDOM.render(
+			<MyBtn class="ok">book</MyBtn>,
+			document.getElementById('btn-box')
+		)
+	</script>
+</body>
+</html>
