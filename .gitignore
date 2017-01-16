@@ -1,4 +1,5 @@
 
-/WorkMan
+/my*
+/WorkMan*
 */node_modules
 /electron

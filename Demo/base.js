@@ -1,8 +1,6 @@
 const electron = require('electron');
 // 控制应用生命周期模块
-const {app, dialog} = electron;
-
-
+const {app} = electron;
 // 创建原生浏览器窗口的模块
 const {BrowserWindow} = electron;
 
@@ -18,11 +16,6 @@ function createWindow() {
 	mainWindow.on('closed', ()=> {
 		mainWindow = null;
 	});
-
-	
-	console.log(dialog.showOpenDialog({
-		properties: ['openFile', 'openDirectory', 'multiSelections']
-	}))
 }
 
 app.on('ready', createWindow);
