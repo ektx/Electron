@@ -1,6 +1,4 @@
 const electron = require('electron');
-
-const path = require('path');
 // 控制应用生命周期模块
 const {app, dialog} = electron;
 
@@ -21,7 +19,22 @@ function createWindow() {
 		mainWindow = null;
 	});
 
-	dialog.showErrorBox('Error!', '>_<......')
+	/*
+		filters options:
+		Images 可选 ['jpg'|'png'|'git']
+		Movies 可选 ['mkv' | 'aiv'|'mp4']
+		Custom File Type 自定义可选扩展名
+		All Files 可以使用 *,默认为此
+
+		在 showSaveDialog 中,filter功能是规定保存文件扩展名(不可更换,如果不要请删除)
+	*/
+	console.log(dialog.showSaveDialog({
+		title: '导出',
+		filters: [
+			{name: 'Custom File Type', extensions: ['md']}
+		],
+		properties: ['openFile', 'openDirectory', 'multiSelections']
+	}))
 }
 
 app.on('ready', createWindow);

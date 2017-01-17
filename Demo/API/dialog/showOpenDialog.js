@@ -1,6 +1,4 @@
 const electron = require('electron');
-
-const path = require('path');
 // 控制应用生命周期模块
 const {app, dialog} = electron;
 
@@ -21,7 +19,10 @@ function createWindow() {
 		mainWindow = null;
 	});
 
-	dialog.showErrorBox('Error!', '>_<......')
+	
+	console.log(dialog.showOpenDialog({
+		properties: ['openFile', 'openDirectory', 'multiSelections']
+	}))
 }
 
 app.on('ready', createWindow);

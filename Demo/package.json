@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "main": "main.js",
   "scripts": {
+    "start": "./node_modules/.bin/electron .",
     "build": "electron-packager --platform=mas --arch=x64 --version=1.2.7 . helloworld"
   },
   "devDependencies": {
