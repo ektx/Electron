@@ -12,18 +12,10 @@ let mainWindow;
 
 function createWindow() {
 
-	let id;
+	console.log('系统语言:', app.getLocale() );
 
-	// dock 弹跳一次
-	// app.dock.bounce()
-
-	// dock 弹跳一次
-	// id = app.dock.bounce('informational')
-
-	// dock 弹跳
-	id = app.dock.bounce('critical')
-
-	console.log( id )	
+	app.quit()
+	
 }
 
 app.on('ready', createWindow);

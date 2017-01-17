@@ -11,19 +11,17 @@ const {BrowserWindow} = electron;
 let mainWindow;
 
 function createWindow() {
+	mainWindow = new  BrowserWindow({width: 800, height: 600});
 
-	let id;
+	mainWindow.loadURL(`file://${__dirname}/index.html`);
 
-	// dock 弹跳一次
-	// app.dock.bounce()
+	mainWindow.webContents.openDevTools();
 
-	// dock 弹跳一次
-	// id = app.dock.bounce('informational')
+	mainWindow.on('closed', ()=> {
+		mainWindow = null;
+	});
 
-	// dock 弹跳
-	id = app.dock.bounce('critical')
-
-	console.log( id )	
+	dialog.showErrorBox('Error!', '>_<......')
 }
 
 app.on('ready', createWindow);
