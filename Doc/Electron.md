@@ -47,7 +47,7 @@ npm install electron-prebuilt --save-dev
   "version": "0.0.1",
   "main": "main.js",
   "scripts": {
-    "build": "electron-packager --platform=mas --arch=x64 --version=1.2.7 . helloworld"
+    "build": "electron-packager --platform=darwin --arch=x64 --version=1.4.14 --overwrite --ignore=dev-settings --ignore=.git --prune . myWork --icon=app.icns"
   },
   "devDependencies": {
     "electron-packager": "^7.3.0",
@@ -61,8 +61,14 @@ npm install electron-prebuilt --save-dev
 | 参数         | 说明                  |
 | ---------- | ------------------- |
 | --arch     | 系统位数                |
-| --version  | 版本                  |
+| --version  | 打包使用的 electron 版本                  |
+| --overwrite | 打包覆盖之前的包 |
+| --ignore   | 不打进包中的数据 |
 | --platform | 平台,这里是指生成 Mac 使用程序包 |
+| --platform | 平台,这里是指生成 Mac 使用程序包 |
+| --icon     | 应用图标 |
+| --prune    | 减小打包大小,除去 devDependencies 内容 |
+
 
 
 
