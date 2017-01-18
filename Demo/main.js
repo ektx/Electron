@@ -1,28 +1,33 @@
-const electron = require('electron');
-
-const path = require('path');
-// 控制应用生命周期模块
-const {app, clipboard} = electron;
-
-
-// 创建原生浏览器窗口的模块
-const {BrowserWindow} = electron;
-
-let mainWindow;
+const { app, BrowserWindow } = require('electron');
 
 function createWindow() {
-	
-	mainWindow = new  BrowserWindow({width: 720, height: 470});
 
-	mainWindow.loadURL(`file://${__dirname}/screenCapture.html`);
+	let win = new BrowserWindow();
 
-	mainWindow.webContents.openDevTools();
+	win.webContents.session.on('will-download', (event, item, webContents) => {
+		item.setSavePath('/tmp/save.pdf');
 
-	mainWindow.on('closed', ()=> {
-		mainWindow = null;
+		item.on('updated', (event, state) => {
+			if (state === 'interrupted') {
+				console.log('Download is interrupted but can be resumed')
+			} else if (state === 'progressing') {
+				if (item.isPaused()) {
+					console.log('Download is paused')
+				} else {
+					console.log(`Received bytes: ${item.getReceivedBytes()}`)
+				}
+			}
+		})
+
+		item.once('done', (event, state)=> {
+			if (state === 'completed') {
+				console.log('Download successfully')
+			} else {
+				console.log(`Download faild: ${state}`)
+			}
+		})
 	});
-
-}
+} 
 
 app.on('ready', createWindow);
 
