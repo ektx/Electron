@@ -11,16 +11,14 @@ const {BrowserWindow} = electron;
 let mainWindow;
 
 function createWindow() {
-	
-	mainWindow = new  BrowserWindow({width: 800, height: 600});
+	// 给剪贴板添加以下内容
+	clipboard.writeText('hello world!', 'selection');
+	console.log( clipboard.readText('selection') );
 
-	mainWindow.loadURL(`file://${__dirname}/desktopCapture.html`);
+	clipboard.writeText('can you see?', 'selection2');
+	console.log( clipboard.readText('selection2') );
 
-	mainWindow.webContents.openDevTools();
-
-	mainWindow.on('closed', ()=> {
-		mainWindow = null;
-	});
+	app.quit();
 
 }
 

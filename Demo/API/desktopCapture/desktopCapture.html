@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Hello world!</title>
+	<style>
+		body, video {
+			margin: 0;
+			padding: 0;
+		}
+		video {
+			width: 100vw;
+			height: 100vh;
+		}
+	</style>
+</head>
+<body>
+	<video autoplay="autoplay"></video>
+
+	<script>
+		const {desktopCapturer} = require('electron')
+
+		desktopCapturer.getSources({types: ['window','screen']}, (error, sources) => {
+			if (error) throw error;
+			console.log(sources)
+			for (let i = 0; i < sources.length; ++i) {
+				if (sources[i].name === "Entire screen") {
+					navigator.webkitGetUserMedia({
+						audio: false,
+						video: {
+							mandatory: {
+								chromeMediaSource: 'desktop',
+								chromeMediaSourceId: sources[i].id,
+								minWidth: 1280,
+								maxWidth: 1280,
+								minHeight: 720,
+								maxHeight: 720
+							}
+						}
+					}, handleStream, handleError)
+					return
+				}
+			}
+		});
+
+		function handleStream (stream) {
+			console.log(stream)
+			document.querySelector('video').src = URL.createObjectURL(stream)
+		}
+
+		function handleError (e) {
+			console.log(e)
+		}
+	</script>
+</body>
+</html>

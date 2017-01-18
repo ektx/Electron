@@ -11,17 +11,12 @@ const {BrowserWindow} = electron;
 let mainWindow;
 
 function createWindow() {
-	
-	mainWindow = new  BrowserWindow({width: 800, height: 600});
+	// 给剪贴板添加以下内容
+	clipboard.writeText('hello world!');
 
-	mainWindow.loadURL(`file://${__dirname}/desktopCapture.html`);
+	app.quit();
 
-	mainWindow.webContents.openDevTools();
-
-	mainWindow.on('closed', ()=> {
-		mainWindow = null;
-	});
-
+	// 在控制台或其它可输入文本区, ctrl/command + v 试试
 }
 
 app.on('ready', createWindow);
