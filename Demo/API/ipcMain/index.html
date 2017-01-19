@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Hello world!</title>
+</head>
+<body>
+	<h1>发送信息:</h1>
+	<textarea name="" id="message" cols="30" rows="10"></textarea>
+	<div>
+		<button id="sendSync">同步发送</button>
+		<button id="send">异步发送</button>
+	</div>
+
+	<script>
+		const {ipcRenderer} = require('electron');
+
+		let sendBtn = document.getElementById('send');
+		let sendSyncBtn = document.getElementById('sendSync');
+		let mes = document.getElementById('message');
+
+		sendBtn.addEventListener('click', sendMessage, false)
+		sendSyncBtn.addEventListener('click', sendMessage, false)
+
+		function sendMessage() {
+			let reply = ipcRenderer[this.id](`${this.id}-message`, mes.value);
+
+			if (this.id === 'sendSync') console.log(reply)
+		}
+
+		ipcRenderer.on('asynchronous-reply', (event, arg)=> {
+			console.log(arg)
+		})
+	</script>
+</body>
+</html>
