@@ -1,38 +1,30 @@
 const electron = require('electron');
 
 // 控制应用生命周期模块
-const {app} = electron;
+const {app, BrowserWindow, ipcMain} = electron;
 
+ipcMain.on('send-message', (event, arg)=> {
+	console.log(`异步信息为: ${arg}`);
+	event.sender.send('asynchronous-reply', `异步信息为: ${arg}`)
+});
 
-// 创建原生浏览器窗口的模块
-const {BrowserWindow} = electron;
-
-let mainWindow;
+ipcMain.on('sendSync-message', (event, arg)=> {
+	console.log(`同步得到信息为: ${arg}`);
+	event.returnValue = `同步得到信息为: ${arg}`
+})
 
 function createWindow() {
-	
-	mainWindow = new  BrowserWindow({width: 720, height: 470});
 
-	mainWindow.loadURL(`file://${__dirname}/drayFile.html`);
+	mainWindow = new  BrowserWindow({width: 220, height: 470});
+
+	mainWindow.loadURL(`file://${__dirname}/index.html`);
 
 	mainWindow.webContents.openDevTools();
 
 	mainWindow.on('closed', ()=> {
 		mainWindow = null;
 	});
-
+	
 }
 
 app.on('ready', createWindow);
-
-app.on('window-all-closed', ()=> {
-	if (process.flatform !== 'darwin') {
-		app.quit();
-	}
-});
-
-app.on('activate', () => {
-	if (mainWindow === null) {
-		createWindow();
-	}
-});
