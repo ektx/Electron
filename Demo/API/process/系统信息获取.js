@@ -1,6 +1,7 @@
 // in main.js
 
 // browser 是主进程 renderer 渲染层
+// https://github.com/electron/electron/blob/master/docs-translations/zh-CN/api/process.md
 console.log(`process in: ${process.type}`)
 console.log(`Electron version: ${process.versions.electron}`)
 console.log(`Chrome Version: ${process.versions.chrome}`)
