@@ -47,7 +47,7 @@ npm install electron-prebuilt --save-dev
   "version": "0.0.1",
   "main": "main.js",
   "scripts": {
-    "build": "electron-packager --platform=darwin --arch=x64 --version=1.4.14 --overwrite --ignore=dev-settings --ignore=.git --prune . myWork --icon=app.icns"
+    "build": "electron-packager --platform=darwin --arch=x64 --version=1.4.14 --overwrite --ignore=dev-settings --ignore=.git --prune . myWork --icon=app.icns --app-version=$npm_package_version"
   },
   "devDependencies": {
     "electron-packager": "^7.3.0",
@@ -58,16 +58,17 @@ npm install electron-prebuilt --save-dev
 
 `—platform` 平台,这里是指生成 Mac 使用程序包,
 
-| 参数         | 说明                  |
-| ---------- | ------------------- |
-| --arch     | 系统位数                |
-| --version  | 打包使用的 electron 版本                  |
-| --overwrite | 打包覆盖之前的包 |
-| --ignore   | 不打进包中的数据 |
-| --platform | 平台,这里是指生成 Mac 使用程序包 |
-| --platform | 平台,这里是指生成 Mac 使用程序包 |
-| --icon     | 应用图标 |
-| --prune    | 减小打包大小,除去 devDependencies 内容 |
+| 参数            | 说明                           |
+| ------------- | ---------------------------- |
+| --arch        | 系统位数                         |
+| --version     | 打包使用的 electron 版本            |
+| --overwrite   | 打包覆盖之前的包                     |
+| --ignore      | 不打进包中的数据                     |
+| --platform    | 平台,这里是指生成 Mac 使用程序包          |
+| --platform    | 平台,这里是指生成 Mac 使用程序包          |
+| --icon        | 应用图标                         |
+| --prune       | 减小打包大小,除去 devDependencies 内容 |
+| --app-version | 你的程序当前版本                     |
 
 
 
