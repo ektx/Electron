@@ -9,8 +9,6 @@ npm install electron --save-dev
 # 全局安装 
 npm install electron -g
 
-# 1.3.0 之前安装
-npm install electron-prebuilt --save-dev
 ```
 
 
@@ -21,23 +19,25 @@ npm install electron-prebuilt --save-dev
 # 全局安装应用启动方式
 electron .
 
-# 局部安装说用启动方式
+# 局部安装方用启动方式
 ./node_modules/.bin/electron .
+
+# 开发环境局部安装应用启动方式
+NODE_ENV=development ./node_modules/.bin/electron .
 ```
 
 
 
 ## electron-packager 打包
 
-在使用 electron-package 打包时,先要确认已经安装了 electron-prebuilt
+~~在使用 electron-package 打包时,先要确认已经安装了 electron-prebuilt~~
 
 ```shell
 npm install elelctron-packager --save-dev
 
+# 不推荐使用了
 npm install electron-prebuilt --save-dev
 ```
-
-
 
 然后在 package.json 中添加如下命令:
 
@@ -47,30 +47,29 @@ npm install electron-prebuilt --save-dev
   "version": "0.0.1",
   "main": "main.js",
   "scripts": {
-    "build": "electron-packager --platform=darwin --arch=x64 --version=1.4.14 --overwrite --ignore=dev-settings --ignore=.git --prune . myWork --icon=app.icns --app-version=$npm_package_version"
+    "build": "electron-packager --platform=darwin --arch=x64 --electronVersion=1.4.14 --overwrite --ignore=dev-settings --ignore=.git --prune . myWork --icon=app.icns --app-version=$npm_package_version"
   },
   "devDependencies": {
-    "electron-packager": "^7.3.0",
-    "electron-prebuilt": "^1.2.7"
+    "electron": "^1.6.2"
   }
 }
 ```
 
 `—platform` 平台,这里是指生成 Mac 使用程序包,
 
-| 参数            | 说明                           |
-| ------------- | ---------------------------- |
-| --arch        | 系统位数                         |
-| --version     | 打包使用的 electron 版本            |
-| --overwrite   | 打包覆盖之前的包                     |
-| --ignore      | 不打进包中的数据                     |
-| --platform    | 平台,这里是指生成 Mac 使用程序包          |
-| --platform    | 平台,这里是指生成 Mac 使用程序包          |
-| --icon        | 应用图标                         |
-| --prune       | 减小打包大小,除去 devDependencies 内容 |
-| --app-version | 你的程序当前版本                     |
+| 参数                | 说明                           |
+| ----------------- | ---------------------------- |
+| --arch            | 系统位数                         |
+| --electronVersion | 打包使用的 electron 版本            |
+| --overwrite       | 打包覆盖之前的包                     |
+| --ignore          | 不打进包中的数据                     |
+| --platform        | 平台,这里是指生成 Mac 使用程序包          |
+| --platform        | 平台,这里是指生成 Mac 使用程序包          |
+| --icon            | 应用图标                         |
+| --prune           | 减小打包大小,除去 devDependencies 内容 |
+| --app-version     | 你的程序当前版本                     |
 
-
+[Doc API](https://github.com/electron-userland/electron-packager/blob/master/docs/api.md)
 
 
 然后运行: **npm run build** 会自动生成包,这时可能会下载你指定的打包程序,因为国内网络的问题,我们自己手动下载下来,
