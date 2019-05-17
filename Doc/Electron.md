@@ -1,5 +1,7 @@
 # Electron
 
+[toc]
+
 ## 安装
 
 ```shell
@@ -85,13 +87,29 @@ rm -rf yourFilesName
 
 
 
-### 淘宝镜像
+## 淘宝镜像
 
-对于这个不用多说,科学上网!
+对于国内开发Electron.js 我会需要科学上网。我们可以通过淘宝镜像功能，先把我们需要的文件下载下来，比如，我们想要开发 4.0.0-beta.7，我们可以打开地址: [4.0.0-beta.7](https://npm.taobao.org/mirrors/electron/4.0.0-beta.7/),然后下载: electron-v4.0.0-beta.7-darwin-x64.zip  文件。
 
-http://npm.taobao.org/mirrors/electron/
+> 对于不同系统于你想要打包的内容不同，你可能需要的不同，我这边示例的是 MacOS 上的文件。
 
+下载完成后，我们进入自己的根目录
+```bash
+cd ~
 
+# 打开electron 文件夹
+cd .electron
+```
+
+然后把我们下载的文件放入，这时，你再进行以下命令时，会快很多：
+```bash
+yarn add electron
+```
+
+[淘宝镜像](http://npm.taobao.org/mirrors/electron/)  
+[eletron安装卡在 node install.js](https://segmentfault.com/q/1010000007594059)  
+
+## FAQ
 
 ### No path.txt
 
