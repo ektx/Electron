@@ -62,4 +62,3 @@ local.properties
 /WorkMan*
 */node_modules
 /electron
-/liteText
